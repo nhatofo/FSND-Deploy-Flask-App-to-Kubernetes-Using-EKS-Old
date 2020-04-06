@@ -4,8 +4,8 @@ metadata:
   name: aws-auth
   namespace: kube-system
 data:
-  mapRoles: |
-    - rolearn: arn:aws:iam::637173576508:role/UdacityFlaskDeployCBKubectlRole
+  mapRoles: 
+    - rolearn: arn:aws:iam::637173576508:role/eksctl-simple-jwt-api-cluster-ServiceRole-17R7ZHEZK1RJ2
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
