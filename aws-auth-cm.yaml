@@ -5,7 +5,7 @@ data:
       - system:bootstrappers
       - system:nodes
       - system:masters
-      rolearn: arn:aws:iam::183075829256:role/UdacityFlaskDeployCBKubectlRole
+      rolearn: arn:aws:iam::382292333642:role/UdacityFlaskDeployCBKubectlRole
       username: system:node:{{EC2PrivateDNSName}}
 kind: ConfigMap
 metadata:
