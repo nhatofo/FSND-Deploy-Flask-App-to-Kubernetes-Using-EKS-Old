@@ -11,11 +11,12 @@ data:
         - system:bootstrappers
         - system:nodes
   mapUsers: |
-    - userarn: arn:aws:iam::382292333642:user/deploy
+    - userarn: arn:aws:iam::382292333642:role/UdacityFlaskDeployCBKubectlRole
       username: deploy
       groups:
         - system:masters
-    - userarn: arn:aws:iam::382292333642:user/deploy
+    - userarn: arn:aws:iam::382292333642:role/UdacityFlaskDeployCBKubectlRole
       username: deploy
       groups:
         - system:masters
+  
