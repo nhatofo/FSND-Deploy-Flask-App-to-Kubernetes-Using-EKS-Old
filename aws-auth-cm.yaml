@@ -12,10 +12,10 @@ data:
         - system:nodes
   mapUsers: |
     - userarn: arn:aws:iam::382292333642:user/deploy
-      username: admin
+      username: deploy
       groups:
         - system:masters
     - userarn: arn:aws:iam::382292333642:user/deploy
-      username: ops-user
+      username: deploy
       groups:
         - system:masters
