@@ -5,18 +5,9 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: arn:aws:iam::382292333642:role/UdacityFlaskDeployCBKubectlRole
+    - rolearn: arn:aws:iam::382292333642:role/eksctl-simple-jwt-api-cluster-ServiceRole-NGXLMOY2UNMW
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
         - system:nodes
-  mapUsers: |
-    - userarn: arn:aws:iam::382292333642:role/UdacityFlaskDeployCBKubectlRole
-      username: deploy
-      groups:
-        - system:masters
-    - userarn: arn:aws:iam::382292333642:role/UdacityFlaskDeployCBKubectlRole
-      username: deploy
-      groups:
-        - system:masters
   
