@@ -1,7 +1,5 @@
 .DS_Store
 .flaskenv
-.deploy
-deploy/
 *.pyc
 *.pyo
 /env_file
