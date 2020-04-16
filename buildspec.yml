@@ -12,7 +12,7 @@ phases:
       - curl -sS -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/linux/amd64/kubectl
       - chmod +x ./kubectl ./aws-iam-authenticator
       - export PATH=$PWD/:$PATH
-      - apt-get update && apt-get -y install jq && pip3 install --upgrade awscli
+      - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
       - wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
       - tar xJf Python-3.6.0.tar.xz
       - cd Python-3.6.0
@@ -25,9 +25,8 @@ phases:
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple_jwt_api.yml
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
-        - python3 -V
         - pip3 install --upgrade pip
-        - pip3 install -r requirements.txt
+        - Python3 -m pip install -r requirements.txt
         - pytest test_main.py
   build:
     commands:
