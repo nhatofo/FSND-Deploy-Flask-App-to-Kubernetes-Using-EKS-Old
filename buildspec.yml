@@ -20,8 +20,6 @@ phases:
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
         - apt-get update
-        - apt-get install build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev
-        - echo y
         - apt-get install python3-pip python3.7-dev
         - apt-get install python3.7
         - python3 -m pip install --user --upgrade pip
