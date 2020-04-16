@@ -19,16 +19,8 @@ phases:
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' simple_jwt_api.yml
         - $(aws ecr get-login --no-include-email)
         - export KUBECONFIG=$HOME/.kube/config
-        - apt-get install build-essential checkinstall -y
-        - apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev -y
-        - cd /usr/src
-        - sudo wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
-        - sudo tar xzf Python-3.7.4.tgz
-        - cd Python-3.7.4
-        - ./configure --enable-optimizations
-        - make altinstall
-        - python3 -m pip install --user --upgrade pip
-        - pip3 install -r requirements.txt
+        - pip3 install --upgrade pip
+        - Python3 pip install -r requirements.txt
         - pytest test_main.py
   build:
     commands:
