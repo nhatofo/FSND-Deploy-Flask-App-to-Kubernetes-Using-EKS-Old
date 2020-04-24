@@ -1,3 +1,4 @@
+
 """
 A simple app to create a JWT token.
 """
@@ -18,7 +19,6 @@ LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')
 def _logger():
     '''
     Setup logger format, level, and handler.
-
     RETURNS: log object
     '''
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -35,7 +35,8 @@ def _logger():
 
 LOG = _logger()
 LOG.debug("Starting with log level: %s" % LOG_LEVEL )
-app = Flask(__name__)
+APP = Flask(__name__)
+
 
 def require_jwt(function):
     """
@@ -56,12 +57,12 @@ def require_jwt(function):
     return decorated_function
 
 
-@app.route('/', methods=['POST', 'GET'])
+@APP.route('/', methods=['POST', 'GET'])
 def health():
     return jsonify("Healthy")
 
 
-@app.route('/auth', methods=['POST'])
+@APP.route('/auth', methods=['POST'])
 def auth():
     """
     Create JWT token based on email.
@@ -82,7 +83,7 @@ def auth():
     return jsonify(token=_get_jwt(user_data).decode('utf-8'))
 
 
-@app.route('/contents', methods=['GET'])
+@APP.route('/contents', methods=['GET'])
 def decode_jwt():
     """
     Check user token and return non-secret data
@@ -97,11 +98,17 @@ def decode_jwt():
         abort(401)
 
 
-    response = {'email': data['email'],
+    response = {
+        'email': data['email'],
                 'exp': data['exp'],
-                'nbf': data['nbf'] }
+                'nbf': data['nbf'] 
+                }
     return jsonify(**response)
 
+# This comment is just test aws codepipeline
+@APP.route('/commit')
+def test_commit():
+    return jsonify({"test": "New commit parameter store"})
 
 def _get_jwt(user_data):
     exp_time = datetime.datetime.utcnow() + datetime.timedelta(weeks=2)
@@ -111,4 +118,4 @@ def _get_jwt(user_data):
     return jwt.encode(payload, JWT_SECRET, algorithm='HS256')
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    APP.run(host='127.0.0.1', port=8080, debug=True)
