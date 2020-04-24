@@ -1,4 +1,3 @@
-
 """
 A simple app to create a JWT token.
 """
@@ -36,7 +35,6 @@ def _logger():
 LOG = _logger()
 LOG.debug("Starting with log level: %s" % LOG_LEVEL )
 APP = Flask(__name__)
-
 
 def require_jwt(function):
     """
@@ -98,17 +96,11 @@ def decode_jwt():
         abort(401)
 
 
-    response = {
-        'email': data['email'],
+    response = {'email': data['email'],
                 'exp': data['exp'],
-                'nbf': data['nbf'] 
-                }
+                'nbf': data['nbf'] }
     return jsonify(**response)
 
-# This comment is just test aws codepipeline
-@APP.route('/commit')
-def test_commit():
-    return jsonify({"test": "New commit parameter store"})
 
 def _get_jwt(user_data):
     exp_time = datetime.datetime.utcnow() + datetime.timedelta(weeks=2)
